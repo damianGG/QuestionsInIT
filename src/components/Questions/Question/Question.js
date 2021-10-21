@@ -7,56 +7,58 @@ import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch } from 'react-redux';
-import {deleteQuestion,likeQuestion,disLikeQuestion} from '../../../actions/questions.js';
+import { deleteQuestion, likeQuestion, disLikeQuestion } from '../../../actions/questions.js';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const Question = ({question,setCurrentId})=>{
-    const dispatch = useDispatch();
-    const [visible, setVisible] = React.useState(false);
-   
+import { Editor, EditorState, convertFromRaw } from 'draft-js';
+import './styles.css';
 
-    return(
-      
-        <Paper sx={{ maxWidth: 1028, my: 1, mx: 'auto', p: 2 }}>
-          <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={1}>
-            <Grid item xs={12} align="center">
-              <Rating size="small" name="read-only" value={question.difficulty}readOnly/>
-            </Grid>
-            <Grid item xs={12}>
-                <Typography variant="h5" align="center"> {question.question} </Typography>  
-            </Grid>
-            <Grid item xs={12} align="center">
-                <Button size="large" color="primary" onClick={()=>dispatch(likeQuestion(question._id))}>
-                    <KeyboardArrowUpIcon fontSize="large"/>
-                      {question.likeCount}
-                </Button>
-                <Button size="large" color="primary" onClick={()=>dispatch(disLikeQuestion(question._id))}>
-                    <KeyboardArrowDownIcon fontSize="large"/>
-                </Button>
-                <Button size="small" color="primary" onClick={()=>dispatch(deleteQuestion(question._id))}>
-                    <DeleteIcon fontSize="small"/>
-                </Button>
-                <Button  size="small" onClick={() => setCurrentId(question._id)}>
-                    <EditIcon fontSize="small"/>
-                </Button> 
-            </Grid>
-            <Grid item xs={12} align="center">
-                <Button  onClick={() => setVisible(!visible)}>
-                  <Typography >{visible ? 'Hide answer' : 'Show me answer'}</Typography>
-                </Button> 
-            </Grid>
-              {visible &&
-            <Grid item xs={12} >
-             <Typography variant="subtitle1" align="center" style={{ wordWrap: 'break-word' }}> {question.answer}</Typography>
-            </Grid>
-            }
+import draftToHtml from 'draftjs-to-html';
+
+
+const Question = ({ question, setCurrentId }) => {
+  const dispatch = useDispatch();
+  const [visible, setVisible] = React.useState(false);
+
+  const contentState = convertFromRaw(JSON.parse(question.draftAnswer));
+  const editorState = EditorState.createWithContent(contentState);
+
+
+  return (
+    <Accordion className="accordion">
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id="panel1a-header"
+      >
+        <Grid container spacing={1}>
+          <Grid item xs={12} align="center">
+            <Rating size="small" name="read-only" value={question.difficulty} readOnly />
+            <Button size="small" color="primary" onClick={() => dispatch(deleteQuestion(question._id))}>
+              <DeleteIcon fontSize="small" />
+            </Button>
+            <Button size="small" onClick={() => setCurrentId(question._id)}>
+              <EditIcon fontSize="small" />
+            </Button>
           </Grid>
-          </Box>
-        </Paper>
-    )
+          <Grid item xs={12}>
+            <Typography variant="h5" align="center"> {question.question} </Typography>
+          </Grid>
+        </Grid>
+      </AccordionSummary>
+      <AccordionDetails className="accordionOpened">
+        <Editor editorState={editorState} readOnly={true} />
+      </AccordionDetails>
+    </Accordion>
+
+
+  )
 }
 
 export default Question;

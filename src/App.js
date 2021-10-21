@@ -8,6 +8,9 @@ import Form from "./components/Form/Form";
 import useStyles from "./styles";
 import AddIcon from '@mui/icons-material/Add';
 import {Button} from '@material-ui/core';
+import Navbar from "./components/Header/Navbar"
+
+
 
 
 
@@ -23,28 +26,28 @@ const App = () => {
       }, [currentId, dispatch]);
 
     return ( 
-     <Container maxidt='lg'>
-         <AppBar className={classes.appBar} position="static" color="inherit">
-            <Typography className='classesName.heading' variant="h4" align="center">Questions in IT</Typography>
-         </AppBar>
+        <>
+     {/* <Container maxidt='lg'> */}
          <Grow in>
-             <Container>    
-                 <Grid>
+             <Container overflow="auto" style={{padding: 0 + 'px'}}>    
+                <Navbar/>
+                 <Grid style={{marginTop: 130 + 'px',padding: 8 + 'px'}} >
                      <Button fontSize="large" onClick={() => setVisible(!visible)}>
                          {visible ? 'Hide form' : <AddIcon fontSize="large"/>}       
                     </Button>
                     {visible && 
-                    <Grid>
+                    <Grid style={{padding: 0 + 'px'}}>
                         <Form id="mainForm" currentId={currentId} setCurrentId={setCurrentId}/>                       
                     </Grid>
-                    }
+                    } 
                     <Grid >
                         <Questions setCurrentId={setCurrentId}/>                      
                     </Grid>
                  </Grid>
              </Container>
          </Grow>
-     </Container>
+     {/* </Container> */}
+     </>
     );
 }
 

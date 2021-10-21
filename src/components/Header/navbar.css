@@ -1,0 +1,28 @@
+#appbar {
+  background-color:white;
+}
+
+#buttonSignIn {
+  border-radius: 25px;
+  margin-right: 20px;
+  background-color: #00d563;
+}
+
+#menuIcon{
+  color:black;
+  font-size: 30px;
+}
+
+#logotext {
+  font-family: "Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue","sans-serif"; 
+    font-weight: 700;
+    line-height: 20px;
+}
+
+#menu- > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiMenu-paper.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation8.MuiPopover-paper.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper li {
+  display: flex;
+}
+
+.header-select {
+  justify-content: center
+}

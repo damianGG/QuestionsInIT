@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 
-const url = 'https://interview-react-questions.herokuapp.com/questions'
+ const url = 'https://interview-react-questions.herokuapp.com/questions'
+// const url = 'http://localhost:3000/questions'
 export const fetchQuestions =()=> axios.get(url);
 
 export const createQuestion = (newQuestion)=> axios.post(`${url}`,newQuestion);

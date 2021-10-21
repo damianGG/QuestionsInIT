@@ -7,6 +7,9 @@ import './index.css';
 import TagManager from 'react-gtm-module'
 import reducers from './reducers';
 import App from './App';
+import {AppBar,Typography,Container}
+from '@material-ui/core';
+import Navbar from './components/Header/Navbar';
 
 
 const store = createStore(reducers,compose(applyMiddleware(thunk))); 
@@ -19,7 +22,8 @@ TagManager.initialize(tagManagerArgs)
 
 ReactDOM.render(
             <Provider store ={store}>
-                <App/>
+                    {/* <Navbar /> */}
+                    <App/>           
             </Provider>
     ,document.getElementById('root')
 );
