@@ -1,15 +1,12 @@
 import React from 'react';
 import { Button, Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Rating from '@mui/material/Rating';
 import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch } from 'react-redux';
 import { deleteQuestion, likeQuestion, disLikeQuestion } from '../../../actions/questions.js';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
