@@ -12,11 +12,11 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp' ;
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import './styles.css';
 
-import draftToHtml from 'draftjs-to-html';
+//import draftToHtml from 'draftjs-to-html';
 
 
 const Question = ({ question, setCurrentId }) => {
@@ -37,15 +37,16 @@ const Question = ({ question, setCurrentId }) => {
         <Grid container spacing={1}>
           <Grid item xs={12} align="center">
             <Rating size="small" name="read-only" value={question.difficulty} readOnly />
-            <Button size="small" color="primary" onClick={() => dispatch(deleteQuestion(question._id))}>
-              <DeleteIcon fontSize="small" />
+            <Button size="large" color="primary" onClick={()=>dispatch(likeQuestion(question._id))}>
+                    <KeyboardArrowUpIcon fontSize="large"/>
+                      {question.likeCount}
             </Button>
             <Button size="small" onClick={() => setCurrentId(question._id)}>
               <EditIcon fontSize="small" />
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h5" align="center"> {question.question} </Typography>
+            <Typography variant="h6" align="center"> {question.question} </Typography>
           </Grid>
         </Grid>
       </AccordionSummary>
