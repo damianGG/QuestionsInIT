@@ -4,7 +4,7 @@ Its simple React App with DB, server in node.js, and React on front-end  - BETA 
 Please check:
 
 API: https://questioninit.herokuapp.com/questions
-Live: www.questionsin.it
+# Live: www.questionsin.it
 
 # VOTE:
 You can like or dislike question
